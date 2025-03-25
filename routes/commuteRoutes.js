@@ -45,7 +45,7 @@ router.post('/', authMiddleware,[
 });
 
 //get user's commute history (protected route)
-router.get('/history',authMiddleware,[
+router.get('/',authMiddleware,[
     // Input validation middleware for pagination
     body('page').optional().isInt({ min: 1 }).withMessage('Page must be a positive integer'),
     body('limit').optional().isInt({ min: 1 }).withMessage('Limit must be a positive integer')

@@ -9,7 +9,7 @@ require('dotenv').config()
 
 router.post('/register',[
     //input validation middleware
-    body('name').isString().notEmpty.withMessage('Name is required'),
+    body('name').isString().notEmpty().withMessage('Name is required'),
     body('email').isEmail().withMessage('Invalid email format'),
     body('password').isLength({ min: 6 }).withMessage('Password must be at least 6 characters long')
 ], async(req,res) => {

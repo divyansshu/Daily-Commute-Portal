@@ -1,10 +1,10 @@
 import axios from 'axios'
 
-const API_URL = 'http://localhost:5000/api/commute'
+const API_URL = 'http://localhost:5000/api/commutes'
 
 //fetch user commute history
 export const getCommuteHistory = async (token) => {
-    const response = await axios.get(`${API_URL}/history`, {
+    const response = await axios.get(`${API_URL}`, {
         headers: {Authorization: `Bearer ${token}`},
     })
     return response.data

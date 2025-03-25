@@ -9,13 +9,16 @@ dotenv.config();
 connectDB()
 
 const app = express()
-app.use(express.json())
+
 const corsOption = {
-    origin: ['http://localhost:3000', 'http://our-deployed-frontend.com'],
+    origin: '*',
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders:['Content-Type', 'Authorization']
 }
 app.use(cors(corsOption))
+// ✅ Handle preflight requests
+app.options('*', cors(corsOption))
+app.use(express.json())
 
 //rate limiting middleware
 const limiter = rateLimit({
@@ -31,7 +34,6 @@ const authRoutes = require('./routes/authRoutes')
 const commuteRoutes = require('./routes/commuteRoutes')
 const routeRoutes = require('./routes/routeRoutes')
 const userRoutes = require('./routes/userRoutes')
-const { default: rateLimit } = require('express-rate-limit')
 
 app.use('/api/auth', authRoutes)
 app.use('/api/commutes', commuteRoutes)
